@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+{% load static %} 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <title>{{ r.location.name }} Weather</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <header class="header row"> 
+                <div class="header__image">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'logo.png' %}"/>
+                    </a>
+                </div>
+            </header>
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="infomation">
+                            <h5 class="infomation__date">{{ time }}</h5>
+                            <div class="infomation__temperature">
+                                <div class="icon">
+                                    <img src="https:{{ r.current.condition.icon }}">
+                                </div>
+                                <div class="infomation__temperature-num">
+                                    <span>{{ temp_c }}</span>
+                                    <span>o</span>
+                                    <span>C</span>
+                                </div>
+                            </div>
+                            <div class="infomation__temperature-title">{{ r.current.condition.text }}</div>
+                            <div class="infomation__footer">
+                                <div class="row no-gutters">
+                                    <div class="col-6">
+                                        <div class="item infomation__humidity">
+                                            <p class="infomation__humidity-tittle">Humidity</p>
+                                            <p class="infomation__humidity-value">{{ r.current.humidity }}%</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="item infomation__windspeed">
+                                            <p class="infomation__windspeed-tittle">Wind Speed</p>
+                                            <p class="infomation__windspeed-value">{{ r.current.wind_kph }} km/h</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="item infomation__UV">
+                                            <p class="infomation__UV-tittle">UV</p>
+                                            <p class="infomation__UV-value">{{ r.current.uv }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="item infomation__visual">
+                                            <p class="infomation__visual-tittle">Visual</p>
+                                            <p class="infomation__visual-value">{{ r.current.vis_km }} km</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-8 col-md-6 col-12" id="ri">
+                        <div class="temperature">
+                            <div class="temperature__title">{{ city }}</div>
+                            <div class="temperature-img">
+                                <img src="{{ img_ }}" alt="">
+                            </div>
+                            <div class="temperature__dayinmonth">
+                                <div class="row justify-content-between no-gutters">
+
+                                    {% for i in forecast_date %}
+
+                                        <div class="col-lg-2 col-6 p-lg-0 p-1">
+                                            <div class="item">
+                                                <p class="day">{{ i.date }}</p>
+                                                <div class="icon">
+                                                    <img src="https:{{ i.day.condition.icon }}">
+                                                </div>
+                                                <div class="desc">
+                                                    <p class="title">{{ i.day.condition.text }}</p>
+                                                </div>
+                                                <p class="value">{{ i.day.avgtemp_c }}° C</p>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
