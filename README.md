@@ -2,14 +2,13 @@
 
 
 * Member:
-    + Nguyen Ngoc Ai Dan - 31900658
     + Nguyen The Phuc Hiep - 52100888
 
 
 
 * The directory structure is:
 
-        31900658_NguyenNgocAiDan_52100888_NguyenThePhucHiep
+            52100888_NguyenThePhucHiep
             baocao.pdf
             demo.mp4
             README.txt
